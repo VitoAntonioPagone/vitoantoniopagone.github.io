@@ -23,7 +23,7 @@ repository               : "vitoantoniopagone/vitoantoniopagone.github.io"
 author:
   # Biographic information
   avatar           : "Foto.png"
-  name             : "Vito Antonio Pagone"
+  name             : #"Vito Antonio Pagone"
   pronouns         : # example: "she/her"  
   bio              : #"Short biography for the left-hand sidebar"
   location         : "Zurich, Switzerland"
@@ -50,7 +50,7 @@ author:
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          : # Replace this with you Bluesky username
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
