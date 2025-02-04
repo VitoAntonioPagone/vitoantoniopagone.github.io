@@ -27,9 +27,9 @@ author:
   pronouns         : # example: "she/her"  
   bio              : #"Short biography for the left-hand sidebar"
   location         : "Zurich, Switzerland"
-  employer         : "UBS Switzerland"
+  employer         : #"UBS Switzerland"
   uri              : # URL
-  email            : "vitopagonee@outlook.com" 
+  email            : "vitopagone@outlook.com" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
@@ -248,6 +248,7 @@ defaults:
       layout: single
       author_profile: true
   # _teaching
+  '''
   - scope:
       path: ""
       type: teaching
@@ -256,6 +257,7 @@ defaults:
       author_profile: true
       share: true
       comments: true
+  '''
   # _publications
   - scope:
       path: ""
@@ -266,6 +268,7 @@ defaults:
       share: true
       comments: true
   # _portfolio
+  '''
   - scope:
       path: ""
       type: portfolio
@@ -282,7 +285,7 @@ defaults:
       layout: talk
       author_profile: true
       share: true
-
+  '''
 
 # Sass/SCSS
 sass:
