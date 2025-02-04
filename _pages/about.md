@@ -6,4 +6,4 @@ redirect_from:
   - /about/
   - /about.html
 ---
-Hello
+Hello, I am Vito and I am building my website
