@@ -8,7 +8,12 @@ main:
   - title: "CV"
     url: /files/cv.pdf
     
+  - title: "Projects"
+    url: /publications/
+
   - title: "Publications"
     url: /publications/
+  
+
 
 
