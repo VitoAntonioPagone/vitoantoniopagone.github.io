@@ -154,6 +154,7 @@ analytics:
 
 # Reading Files
 include:
+  - "googleacf655d1346c37de.html"
   - .htaccess
   - _pages
   - files
