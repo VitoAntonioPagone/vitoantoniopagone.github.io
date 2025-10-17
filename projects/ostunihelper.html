@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OstuniHelper – Project Details</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* --- Diagram Container --- */
+    .diagram-container {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+
+    .diagram-container img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* --- Expand Button --- */
+    .expand-btn {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: background 0.2s;
+    }
+
+    .expand-btn:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+
+    .expand-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: #333;
+    }
+
+    /* --- Fullscreen Modal --- */
+    .fullscreen-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+
+    .fullscreen-modal img {
+      width: 95%;
+      max-height: 95vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 600px) {
+      .expand-btn {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="../index.html#projects">← Back to Projects</a>
+    </nav>
+    <h1>OstuniHelper – AI Smart Tourism Assistant</h1>
+    <p><em>Full-stack project combining AI, multilingual RAG models, and real-time data.</em></p>
+  </header>
+
+  <section class="section">
+    <h2>Overview</h2>
+<p>
+  OstuniHelper was born in the summer of 2024 from an idea by my brother <strong>Samuele</strong> and me.  
+  We wanted to build a single, welcoming entry point for tourists and residents in Ostuni — a place where anyone can easily find everything they might need during their stay: restaurants, tours, events, weather updates, and more.  
+  We started with a simple online prototype, but soon decided to develop it <strong>entirely from scratch</strong>.  
+  Today, the project has grown into a mature, full-stack platform powered by <strong>OstuniAI</strong>, our multilingual assistant that provides real-time, personalized suggestions and insights.  
+  The platform continues to evolve and improve, always staying true to its goal — making Ostuni even more accessible, connected, and enjoyable for everyone.  
+  For those curious about the technical side, explore the <strong>Architecture section</strong> below.
+</p>
+
+  </section>
+
+  <section class="section">
+    <h2>Architecture</h2>
+
+    <div class="diagram-container">
+      <img src="../images/ostunihelper/architecture.svg" alt="OstuniHelper Architecture Diagram" id="diagramImage">
+      <button class="expand-btn" id="expandBtn" aria-label="Expand diagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M9 3H3v6h2V5h4V3zm12 0h-6v2h4v4h2V3zM3 15v6h6v-2H5v-4H3zm16 0v4h-4v2h6v-6h-2z"/>
+        </svg>
+      </button>
+    </div>
+
+<p>
+  If you’ve reached this part — get ready for some friendly nerdiness!  
+  Under the hood, <strong>OstuniHelper</strong> is a modern full-stack platform built with love and precision.  
+  The frontend runs on clean <strong>HTML</strong> and <strong>CSS</strong>, styled using a compiled version of <strong>TailwindCSS</strong> for performance and consistency.  
+  On the interactive side, <strong>JavaScript</strong> powers the chat interface, category navigation, and translation logic, ensuring that every click and conversation feels smooth and natural.  
+  <br><br>
+  Behind the scenes, everything is handled by a <strong>Flask</strong> backend running on an <strong>Ubuntu VPS</strong>.  
+  Requests are managed through <strong>Gunicorn</strong> and served securely via <strong>Nginx</strong>, making the system fast, reliable, and scalable.  
+  All the activities, services, and experiences you see inside OstuniHelper (and <strong>OstuniAI</strong>) are stored in a <strong>MySQL database</strong>.  
+  Each category — whether it’s restaurants, tours, or events — has its own dedicated API endpoint that fetches structured data directly from the database.  
+  <br><br>
+  Media files such as images are hosted in an <strong>AWS S3 container</strong>, ensuring quick global access to all visuals.  
+  On top of this, <strong>OstuniAI</strong> ties everything together: it allows users to explore the same content conversationally.  
+  Thanks to a <strong>Retrieval-Augmented Generation (RAG)</strong> system, the AI can intelligently extract and present data, almost as if it were clicking the same buttons you see in the interface — only faster and smarter.  
+  <br><br>
+  Finally, we introduced <strong>PromOstuni</strong>, the city’s promotion hub where local offers and events are shared directly through the platform.  
+  Visitors can even subscribe to a newsletter and stay up-to-date with what’s happening around town.  
+  <br><br>
+  Altogether, it’s a growing ecosystem — part technology, part passion project — designed to make Ostuni more connected, welcoming, and future-ready.
+</p>
+
+  </section>
+s
+
+  <footer>
+    <p>© <span id="year"></span> Vito Antonio Pagone</p>
+  </footer>
+
+  <!-- Fullscreen Modal -->
+  <div class="fullscreen-modal" id="fullscreenModal">
+    <img src="../images/ostunihelper/architecture.svg" alt="Expanded Diagram">
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const expandBtn = document.getElementById("expandBtn");
+    const modal = document.getElementById("fullscreenModal");
+
+    expandBtn.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+
+    modal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  </script>
+</body>
+</html>

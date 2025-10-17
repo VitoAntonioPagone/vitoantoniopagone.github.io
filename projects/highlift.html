@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momentum Injection Based High-Lift Wing – Vito Antonio Pagone</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="../index.html#projects">← Back to Projects</a>
+    </nav>
+    <h1>Numerical Investigation of Momentum Injection Based High-Lift Wing</h1>
+    <p><em>Semester Project – ETH Zürich, Institute of Fluid Dynamics</em></p>
+  </header>
+
+  <section class="section">
+    <h2>Overview</h2>
+    <p>
+      This project was developed during my Master’s studies in <strong>Mechanical Engineering</strong> at <strong>ETH Zürich</strong>,
+      under the supervision of <strong>Prof. Dr. Patrick Jenny</strong>. It focuses on one of the most challenging and fascinating
+      areas of aerodynamics — <strong>active control of flow separation</strong> to increase lift efficiency on aircraft wings.
+    </p>
+    <p>
+      The study investigates the concept of <strong>momentum injection</strong> through a slat located on the suction side of a wing.
+      By injecting a small amount of high-energy air into the boundary layer, the method aims to delay or even prevent
+      flow separation, enhancing aerodynamic performance during takeoff and landing.
+    </p>
+    <p>
+      The work combines mathematical modeling, numerical methods, and turbulence analysis to understand how 
+      <strong>active flow control</strong> could lead to more efficient, sustainable aircraft designs.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Technical Highlights</h2>
+    <p>
+      The numerical solver developed for this project is based on the <strong>Reynolds-Averaged Navier–Stokes (RANS)</strong> equations,
+      reduced to a parabolic boundary-layer form. Using a <strong>k–ω turbulence model</strong> and finite-difference discretization,
+      the solver can simulate complex flow behaviors over both uniform and non-uniform meshes.
+    </p>
+    <p>
+      The model was validated against experimental data from literature, achieving excellent agreement in predicting
+      turbulent boundary layers and trailing-edge separation. The results confirm the solver’s ability to capture
+      boundary-layer dynamics with high numerical accuracy and computational efficiency.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Contact</h2>
+    <p>
+      This project reflects my deep interest in computational fluid dynamics and numerical modeling.
+      It’s part of an ongoing journey to explore how mathematics and physics can improve real-world engineering design.
+      <br><br>
+      Please feel free to <strong>reach out</strong> if you have any questions or would like to discuss it further.
+    </p>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> Vito Antonio Pagone</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

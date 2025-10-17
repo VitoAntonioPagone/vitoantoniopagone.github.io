@@ -1,0 +1,182 @@
+:root {
+  --text: #1d1d1f;
+  --bg: #fbfbfd;
+  --accent: #86868b;
+  --link: #0071e3;
+  --subtle: #e5e5ea;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+               "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --transition: all 0.25s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: clamp(1rem, 5vw, 2rem);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+nav a {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 1rem;
+  opacity: 0.85;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 0.2rem;
+  transition: var(--transition);
+}
+
+nav a:hover {
+  opacity: 1;
+  border-bottom: 2px solid var(--link);
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--subtle);
+  padding-bottom: 0.3rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover { text-decoration: underline; }
+
+/* Spacing between sections */
+.section {
+  margin-bottom: 4rem;
+}
+
+/* Remove box look — use spacing and rules instead */
+.job + .job,
+.blog-post + .blog-post {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--subtle);
+}
+
+/* Subtle separation between entries */
+.job p:last-of-type {
+  margin-bottom: 0.5rem;
+}
+
+.blog-date {
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 5rem;
+  border-top: 1px solid var(--subtle);
+  padding-top: 1.5rem;
+  text-align: center;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  nav { gap: 1rem; }
+  body { padding: 1.25rem; }
+  h1 { font-size: 2rem; }
+}
+
+.contact-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-links a:hover {
+  color: #0072b1;
+}
+
+.contact-links svg {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+.header-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+.header-icons a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.header-icons a:hover {
+  color: #0072b1;
+}
+
+.header-icons svg {
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+}

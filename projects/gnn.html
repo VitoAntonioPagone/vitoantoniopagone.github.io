@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flow Reconstruction in Time-Varying Geometries – Project Details</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* --- Diagram Container --- */
+    .diagram-container {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+
+    .diagram-container img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* --- Expand Button --- */
+    .expand-btn {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: background 0.2s;
+    }
+
+    .expand-btn:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+
+    .expand-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: #333;
+    }
+
+    /* --- Fullscreen Modal --- */
+    .fullscreen-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+
+    .fullscreen-modal img {
+      width: 95%;
+      max-height: 95vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 600px) {
+      .expand-btn {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="../index.html#projects">← Back to Projects</a>
+    </nav>
+    <h1>Flow Reconstruction in Time-Varying Geometries using Graph Neural Networks</h1>
+    <p><em>Danciu, Pagone, Böhm, Schmidt & Frouzakis (2024)</em></p>
+  </header>
+
+  <section class="section">
+    <h2>Overview</h2>
+    <p>
+      This research explores how we can reconstruct entire fluid flows from just a few scattered observations —  
+      a challenge at the heart of modern fluid dynamics.  
+      Our study introduces a <strong>Graph Neural Network (GACN)</strong> approach that understands both the flow behavior and the geometry it moves through, even when that geometry changes over time.  
+      The result is a powerful and generalizable method that bridges the gap between <strong>simulation data</strong> and <strong>real-world experiments</strong>.  
+      You can find the full paper on <a href="https://arxiv.org/abs/2411.08764" target="_blank"><strong>arXiv</strong></a>.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Architecture</h2>
+
+    <div class="diagram-container">
+      <img src="../images/flowreconstruction/graph_network_overview.png" alt="Flow Reconstruction Architecture" id="diagramImage">
+      <button class="expand-btn" id="expandBtn" aria-label="Expand diagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M9 3H3v6h2V5h4V3zm12 0h-6v2h4v4h2V3zM3 15v6h6v-2H5v-4H3zm16 0v4h-4v2h6v-6h-2z"/>
+        </svg>
+      </button>
+    </div>
+
+    <p>
+
+      Our model, the <strong>Graph Attention Convolutional Network (GACN)</strong>, treats each point in the flow field as a node in a graph.  
+      Connections between these nodes allow information to travel naturally across space and time, respecting the underlying geometry.  
+      <br><br>
+      The process begins with a <strong>Feature Propagation</strong> step, which fills in missing data by blending information from nearby sensors or known points.  
+      A <strong>binary validity mask</strong> then teaches the network which parts of the data are observed and which are inferred, helping it make more confident and accurate predictions.  
+      <br><br>
+      The network learns to “pay attention” to the most relevant neighbors when reconstructing flows, enabling it to handle <strong>unstructured meshes</strong> and <strong>time-varying boundaries</strong> gracefully.  
+      Trained on high-fidelity simulations and tested on real <strong>Particle Image Velocimetry (PIV)</strong> experiments, it consistently outperformed classical interpolation and convolutional models.  
+      <br><br>
+      The results show not only better numerical accuracy but also a deeper capture of fine turbulent structures — the subtle, beautiful details that make fluid motion so fascinating.  
+      The success of this work points toward future applications where data and geometry meet seamlessly, from engineering design to environmental modeling.
+    </p>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> Vito Antonio Pagone</p>
+  </footer>
+
+  <!-- Fullscreen Modal -->
+  <div class="fullscreen-modal" id="fullscreenModal">
+    <img src="../images/flowreconstruction/graph_network_overview.jpg" alt="Expanded Diagram">
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const expandBtn = document.getElementById("expandBtn");
+    const modal = document.getElementById("fullscreenModal");
+
+    expandBtn.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+
+    modal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  </script>
+</body>
+</html>

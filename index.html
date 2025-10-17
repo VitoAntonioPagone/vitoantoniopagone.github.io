@@ -2,219 +2,275 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Your Name – Personal Website and Blog" />
-  <meta name="keywords" content="Your Name, Blog, Portfolio, AI, Software" />
-  <title>Your Name – Personal Website</title>
-  <style>
-    :root {
-      --text: #333;
-      --bg: #fff;
-      --accent: #4A4A4A;
-      --link: #0077B5;
-      --subtle: #f5f5f5;
-      --spacing: clamp(1rem, 5vw, 2rem);
-      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --font-serif: Georgia, "Times New Roman", serif;
-      --transition: all 0.25s ease;
-      --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--font-sans);
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: var(--spacing);
-    }
-
-    h1, h2, h3 {
-      font-family: var(--font-serif);
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 8vw, 3rem);
-      margin-bottom: 1.5rem;
-    }
-
-    h2 {
-      font-size: clamp(1.5rem, 5vw, 2rem);
-      border-bottom: 1px solid #eaeaea;
-      padding-bottom: 0.5rem;
-      margin-top: 3rem;
-    }
-
-    p {
-      margin-bottom: 1.5rem;
-      font-size: clamp(1rem, 2vw, 1.1rem);
-    }
-
-    a {
-      color: var(--link);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    a:hover {
-      color: var(--accent);
-      text-decoration: underline;
-    }
-
-    /* ===== Header & Navigation ===== */
-    header {
-      margin-bottom: 3rem;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--text);
-      font-weight: 500;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 0.25rem;
-    }
-
-    nav a:hover {
-      border-bottom: 2px solid var(--accent);
-    }
-
-    .header-text {
-      text-align: center;
-    }
-
-    .section {
-      margin-bottom: 3rem;
-    }
-
-    /* ===== Blog Section ===== */
-    .blog-post {
-      border: 1px solid var(--subtle);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .blog-post:hover {
-      box-shadow: var(--shadow-hover);
-    }
-
-    .blog-post h3 {
-      margin-bottom: 0.5rem;
-    }
-
-    .blog-date {
-      color: #777;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      margin-top: 4rem;
-      border-top: 1px solid #eaeaea;
-      padding-top: 1.5rem;
-      color: #777;
-      font-size: 0.9rem;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      nav {
-        gap: 1rem;
-      }
-      body {
-        padding: 1.5rem;
-      }
-    }
-  </style>
+  <meta name="description" content="Vito Antonio Pagone – Data Scientist and Machine Learning Engineer based in Zürich, Switzerland" />
+  <meta name="keywords" content="Vito Pagone, Data Science, Machine Learning, UBS, IBM Research, ETH Zurich, AI, Python, PyTorch, OstuniHelper" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Vito Antonio Pagone – Data Scientist & ML Engineer</title>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<header>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <div class="header-text">
-      <h1>Your Name</h1>
-      <p>Short tagline – Developer, Designer, or whatever describes your work.</p>
-    </div>
-  </header>
+  <h1>Vito Antonio Pagone</h1>
+  <p>Data Scientist & Machine Learning Engineer based in Zürich, Switzerland</p>
 
-  <section class="section" id="about">
-    <h2>About</h2>
-    <p>Introduce yourself briefly. What do you do, what drives you, and what’s your mission?</p>
-  </section>
+  <div class="header-icons">
+    <a href="mailto:vitopagone@outlook.com" title="Email">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <rect width="20" height="16" x="2" y="4" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </a>
+
+    <a href="https://linkedin.com/in/vitoantoniopagone" target="_blank" title="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" fill="none" />
+        <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" fill="none" />
+      </svg>
+    </a>
+
+    <a href="https://github.com/vitoantoniopagone" target="_blank" title="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 3v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.5c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 19v3" />
+      </svg>
+    </a>
+  </div>
+</header>
+
+
+<section class="section" id="about">
+  <h2>About</h2>
+  <p>
+    I’m <strong>Vito</strong>, from <strong>Ostuni</strong>, a small white town in southern Italy.  
+    I’ve always been that person who can’t stop asking how things work — too curious for my own good, maybe.  
+    Technology, programming, algorithms, math, physics, football… anything that challenges me instantly grabs my attention.
+  </p>
+  <p>
+    I love solving problems — not just to make things work, but to make them <em>beautifully logical</em>.  
+    Whether it’s building data pipelines, training machine learning models, or simply figuring out how to automate something dull,  
+    I’m happiest when I’m learning, creating, and exploring new ideas.
+  </p>
+</section>
+
 
   <section class="section" id="experience">
     <h2>Experience</h2>
+
+ <div class="job">
+  <h3>Data Scientist – UBS</h3>
+  <p><em>Mar 2024 – Present | Zürich, Switzerland</em></p>
+  <p>
+    I work in the <strong>AI & Data Science team</strong> within <strong>Global Wealth Management</strong> in Zurich.  
+    Our small but mighty subgroup, <strong>Trading Analytics</strong>, collaborates closely with the <strong>Execution Hub</strong> —  
+    the place where client orders meet the market. My focus is on <strong>post-trade analytics</strong>, using 
+    <strong>machine learning</strong> to tackle real problems that make trading smarter and faster.
+  </p>
+  <p>
+    My daily toolkit revolves around <strong>Python</strong> and <strong>Airflow</strong>. I build and maintain data pipelines that keep 
+    our analytics flowing — Airflow is a brilliant ally for transforming internal data efficiently and transparently.  
+    I’m also part of the <strong>AI Journal Club</strong>, where we regularly discuss new research papers and explore 
+    how fresh ideas can shape our work.  
+  </p>
+  <p>
+    Lately, I’ve been automating <strong>report generation for best execution</strong>, so our insights are always 
+    clear, consistent, and just a click away.
+  </p>
+</div>
+
+
+<div class="job">
+  <h3>Machine Learning Intern – IBM Research</h3>
+  <p><em>Nov 2023 – Jan 2024 | Zürich, Switzerland</em></p>
+  <p>
+    Although a short experience, it was an incredibly inspiring one.  
+    I worked on the idea that if <strong>machine learning models</strong> are trained to predict physical phenomena from simulation data,  
+    they should also be given some <strong>prior knowledge of the underlying physics</strong>.  
+  </p>
+  <p>
+    At IBM, I explored how <strong>atmospheric and climate equations</strong> could be embedded directly into the loss function of a forecasting network  
+    to guide convergence — especially during the early training epochs.  
+    It was fascinating to see how blending data and physics can produce more stable and interpretable results.
+  </p>
+  <p>
+    Beyond the technical side, I got to experience the <strong>IBM Research culture</strong> —  
+    collaborating with brilliant people from around the world.  
+    I left genuinely grateful for the opportunity and the mindset it gave me.
+  </p>
+</div>
+
+
+<div class="job">
+  <h3>Machine Learning Researcher & Python Developer – ETH Zurich</h3>
+  <p><em>Feb 2023 – Jan 2024 | Zürich, Switzerland</em></p>
+  <p>
+    My time at <strong>ETH Zurich</strong> brought together teaching, coding, and research in a way that shaped how I think about science and communication.  
+    As a <strong>Research Assistant</strong> for the MSc course <em>Introduction to Scientific Computing</em> taught by <strong>Prof. Roman Vetter</strong>,  
+    I created <strong>interactive Jupyter notebooks</strong> to help students visualize algorithms and truly understand how they work —  
+    making complex numerical methods more tangible.
+  </p>
+  <p>
+    Later, as a <strong>Machine Learning Researcher</strong>, I continued my <strong>Master’s thesis</strong> work,  
+    developing <strong>Graph Physics-Informed Neural Networks (GPINNs)</strong> to improve field reconstruction accuracy in fluid dynamics.  
+    This phase focused on preparing the research for publication — an effort I pursued under the guidance of <strong>Dr. Bogdan Danciu</strong>.  
+    It was a deeply rewarding experience that combined curiosity, persistence, and the excitement of turning theory into something real.
+  </p>
+</div>
+
+
+
+<div class="job">
+  <h3>Intern – MAN Energy Solutions</h3>
+  <p><em>Sept 2022 – Mar 2023 | Zürich, Switzerland</em></p>
+  <p>
+    This internship marked my first real step into the world of applied <strong>fluid dynamics</strong> and <strong>computational physics</strong>.  
+    I worked on a <strong>simulation framework</strong> to reproduce the <strong>supersonic two-phase flow of CO₂</strong> through converging–diverging nozzles —  
+    a fascinating problem that taught me how physics and code can complement each other beautifully.
+  </p>
+  <p>
+    It was also my first time working in a <strong>company environment</strong>, and it helped me grow both technically and personally.  
+    I became much more confident with <strong>Linux systems</strong> and <strong>scientific programming</strong>,  
+    gaining hands-on experience in writing, testing, and running simulations at scale.
+  </p>
+</div>
+
+
+
+<section class="section" id="projects">
+  <h2>Projects</h2>
+
+  <div class="job">
+    <h3>OstuniHelper – AI Smart Tourism Assistant</h3>
+    <p><em>June 2024 – Present</em></p>
+    <p>
+      A full-stack tourism platform powered by OstuniAI — a multilingual RAG-based assistant offering
+      real-time recommendations for events, monuments, restaurants, and tours in Ostuni, Italy.
+    </p>
+    <a href="projects/ostunihelper.html" class="more-details">→ More details</a>
+  </div>
+
+  <div class="job">
+    <h3>Flow Reconstruction in Time-Varying Geometries using Graph Neural Networks</h3>
+    <p><em>Published Nov 2024 – arXiv</em></p>
+    <p>
+      Applied geometric deep learning to fluid dynamics, improving the accuracy and efficiency
+      of flow prediction models.
+    </p>
+    <a href="projects/gnn.html" class="more-details">→ More details</a>
+  </div>
+
+  <div class="job">
+  <h3>Numerical Investigation of Momentum Injection Based High-Lift Wing</h3>
+  <p><em>Semester Project – ETH Zürich, 2022</em></p>
+  <p>
+    A deep dive into active flow control and high-lift aerodynamics. Developed a numerical solver 
+    based on the RANS equations with a k–ω turbulence model to predict flow separation and assess 
+    momentum injection strategies for more efficient aircraft wings.
+  </p>
+  <a href="projects/highlift.html" class="more-details">→ More details</a>
+</div>
+
+<div class="job">
+  <h3>La Quattordici · Luxury Apartment</h3>
+  <p><em>Web Design & Development – 2025</em></p>
+  <p>
+    Created a clean, modern website for a beautifully restored stone house in the old town of Ostuni — 
+    a digital reflection of its calm and timeless charm.
+  </p>
+  <a href="projects/laquattordici.html" class="more-details">→ More details</a>
+</div>
+
+
+
+</section>
+
+
+  <section class="section" id="education">
+    <h2>Education</h2>
+
     <div class="job">
-      <h3>Job Title – Company</h3>
-      <p><em>Dates</em></p>
-      <p>Describe your work, focus areas, and achievements in a few sentences.</p>
+      <h3>M.Sc. in Mechanical Engineering – ETH Zurich</h3>
+      <p><em>Mar 2021 – Sept 2023</em></p>
+      <p>Thesis: Flow Reconstruction using Physics-Informed and Geometric Deep Learning</p>
+    </div>
+
+    <div class="job">
+      <h3>B.Sc. in Mechanical Engineering – Politecnico di Bari</h3>
+      <p><em>Sept 2017 – Jul 2020</em></p>
+      <p>Graduated with 110/110; early completion as top student in the program.</p>
     </div>
   </section>
 
-  <section class="section" id="blog">
-    <h2>Blog</h2>
+<!-- ==================== BLOG SECTION START ==================== 
+<section class="section" id="blog">
+  <h2>Blog</h2>
 
-    <article class="blog-post">
-      <h3><a href="#">Building My Personal Site with GitHub Pages</a></h3>
-      <p class="blog-date">October 2025</p>
-      <p>In this post, I explain how I set up a fast, free, and clean personal site hosted directly from my GitHub repository.</p>
-    </article>
+  <article class="blog-post">
+    <h3><a href="#">Why Physics-Informed Learning Matters</a></h3>
+    <p class="blog-date">October 2025</p>
+    <p>How integrating physical priors into neural networks bridges data-driven models and scientific reasoning.</p>
+  </article>
 
-    <article class="blog-post">
-      <h3><a href="#">Three Lessons from Working with Generative AI</a></h3>
-      <p class="blog-date">September 2025</p>
-      <p>Reflections on what large models have taught me about both machine learning systems and human creativity.</p>
-    </article>
+  <article class="blog-post">
+    <h3><a href="#">Behind OstuniHelper: Building a Local AI Assistant</a></h3>
+    <p class="blog-date">September 2025</p>
+    <p>A peek into the architecture and challenges of creating a real-time multilingual tourism assistant powered by RAG and caching systems.</p>
+  </article>
+</section>
+ -->
 
-    <article class="blog-post">
-      <h3><a href="#">Why Simplicity Wins in Software Design</a></h3>
-      <p class="blog-date">July 2025</p>
-      <p>How removing features and complexity can make software more powerful — and your life less stressful.</p>
-    </article>
-  </section>
 
-  <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>If you’d like to connect, feel free to reach out or check out my work online.</p>
-    <p>
-      <a href="https://linkedin.com/in/yourprofile">LinkedIn</a> ·
-      <a href="https://github.com/yourusername">GitHub</a>
-    </p>
-  </section>
+<section class="section" id="contact">
+  <h2>Contact</h2>
+  <p>
+    I enjoy building ideas that connect <strong>AI</strong> and the real world.  
+    If you’re working on something creative or meaningful in <strong>machine learning</strong> or <strong>applied AI</strong>, let’s talk.
+  </p>
+
+  <div class="contact-links">
+    <a href="mailto:vitopagone@outlook.com" title="Email">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M4 4h16v16H4z" />
+        <polyline fill="none" stroke="currentColor" stroke-width="2" points="22,6 12,13 2,6"></polyline>
+      </svg>
+      <span>Email</span>
+    </a>
+
+    <a href="https://linkedin.com/in/vitoantoniopagone" target="_blank" title="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" fill="none" />
+        <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" fill="none" />
+      </svg>
+      <span>LinkedIn</span>
+    </a>
+
+    <a href="https://github.com/vitoantoniopagone" target="_blank" title="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 3v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.5c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 19v3" />
+      </svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+</section>
+
+
 
   <footer>
-    <p>© <span id="year"></span> Your Name</p>
+    <p>© <span id="year"></span> Vito Antonio Pagone</p>
   </footer>
 
   <script>
-    // Update current year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
