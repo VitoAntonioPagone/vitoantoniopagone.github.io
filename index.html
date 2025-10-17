@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your Name – Personal Website and Blog" />
+  <meta name="keywords" content="Your Name, Blog, Portfolio, AI, Software" />
+  <title>Your Name – Personal Website</title>
+  <style>
+    :root {
+      --text: #333;
+      --bg: #fff;
+      --accent: #4A4A4A;
+      --link: #0077B5;
+      --subtle: #f5f5f5;
+      --spacing: clamp(1rem, 5vw, 2rem);
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-serif: Georgia, "Times New Roman", serif;
+      --transition: all 0.25s ease;
+      --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--spacing);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 0.5rem;
+      margin-top: 3rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    /* ===== Header & Navigation ===== */
+    header {
+      margin-bottom: 3rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text);
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.25rem;
+    }
+
+    nav a:hover {
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .header-text {
+      text-align: center;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    /* ===== Blog Section ===== */
+    .blog-post {
+      border: 1px solid var(--subtle);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .blog-post:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .blog-post h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-date {
+      color: #777;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      margin-top: 4rem;
+      border-top: 1px solid #eaeaea;
+      padding-top: 1.5rem;
+      color: #777;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        gap: 1rem;
+      }
+      body {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-text">
+      <h1>Your Name</h1>
+      <p>Short tagline – Developer, Designer, or whatever describes your work.</p>
+    </div>
+  </header>
+
+  <section class="section" id="about">
+    <h2>About</h2>
+    <p>Introduce yourself briefly. What do you do, what drives you, and what’s your mission?</p>
+  </section>
+
+  <section class="section" id="experience">
+    <h2>Experience</h2>
+    <div class="job">
+      <h3>Job Title – Company</h3>
+      <p><em>Dates</em></p>
+      <p>Describe your work, focus areas, and achievements in a few sentences.</p>
+    </div>
+  </section>
+
+  <section class="section" id="blog">
+    <h2>Blog</h2>
+
+    <article class="blog-post">
+      <h3><a href="#">Building My Personal Site with GitHub Pages</a></h3>
+      <p class="blog-date">October 2025</p>
+      <p>In this post, I explain how I set up a fast, free, and clean personal site hosted directly from my GitHub repository.</p>
+    </article>
+
+    <article class="blog-post">
+      <h3><a href="#">Three Lessons from Working with Generative AI</a></h3>
+      <p class="blog-date">September 2025</p>
+      <p>Reflections on what large models have taught me about both machine learning systems and human creativity.</p>
+    </article>
+
+    <article class="blog-post">
+      <h3><a href="#">Why Simplicity Wins in Software Design</a></h3>
+      <p class="blog-date">July 2025</p>
+      <p>How removing features and complexity can make software more powerful — and your life less stressful.</p>
+    </article>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <p>If you’d like to connect, feel free to reach out or check out my work online.</p>
+    <p>
+      <a href="https://linkedin.com/in/yourprofile">LinkedIn</a> ·
+      <a href="https://github.com/yourusername">GitHub</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> Your Name</p>
+  </footer>
+
+  <script>
+    // Update current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
