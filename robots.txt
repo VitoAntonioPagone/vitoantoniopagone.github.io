@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vitoantoniopagone.github.io/sitemap.xml
