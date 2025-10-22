@@ -1,1 +1,108 @@
-vitoantoniopagone.github.io.code-workspace
+# ------------------------
+# Python
+# ------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+pip-wheel-metadata/
+*.egg-info/
+.eggs/
+*.egg
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+wheels/
+share/python-wheels/
+*.manifest
+*.spec
+.installed.cfg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Type checker caches
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# ------------------------
+# Editors & IDEs
+# ------------------------
+.vscode/
+.vscode-test/
+*.code-workspace
+
+# ------------------------
+# System files
+# ------------------------
+.DS_Store
+Thumbs.db
+*.log
+
+# ------------------------
+# Environments / secrets
+# ------------------------
+.env
+.env.*
+*.env
+*.secret
+*.key
+*.pem
+
+# ------------------------
+# GitHub Pages (keep your site!)
+# ------------------------
+# Allow HTML, CSS, JS, images, etc.
+!index.html
+!style.css
+!*.html
+!*.css
+!*.js
+!*.svg
+!*.png
+!*.jpg
+!*.jpeg
+!*.ico
+!*.webmanifest
+!robots.txt
+!sitemap.xml
+!sitemap.txt
+!/images/**
+!/favicon_io/**
+!/logos/**
+!/projects/**
+
+# ------------------------
+# Misc
+# ------------------------
+*.bak
+*.tmp
