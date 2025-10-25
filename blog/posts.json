@@ -1,0 +1,11 @@
+[
+  {
+    "title": "OLS: The Geometry of Prediction",
+    "category": "Statistical Learning",
+    "description": "Ordinary Least Squares as the simplest form of learning — a projection that finds structure in data.",
+    "image": "/blog/images/statistical_learning/ols/ols_cover.png",
+    "date": "October 2025",
+    "url": "posts/ols.html",
+    "code": "https://github.com/VitoAntonioPagone/statistical_learning/tree/main/OLS/california_housing"
+  }
+]

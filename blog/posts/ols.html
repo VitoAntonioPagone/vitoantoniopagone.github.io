@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A revisitation of the California Housing dataset using OLS and polynomial regression — a reminder of how much power simple linear models still hold." />
+  <title>California Housing Price Prediction using OLS and Polynomial Regression</title>
+
+  <!-- ====== Styles and Icons ====== -->
+  <link rel="stylesheet" href="../../style.css" />
+
+  <!-- ====== Favicons ====== -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon">
+  <meta name="theme-color" content="#ffffff">
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+</head>
+
+<body>
+
+  <header id="topNav">
+    <nav class="menu">
+      <a href="../../index.html" class="active">Home</a>
+    </nav>
+  </header>
+
+  <!-- ====== BLOG ARTICLE ====== -->
+  <main class="content">
+    <article class="post">
+<header>
+  <h1>California Housing — OLS Assumptions and Model Selection</h1>
+  <p class="post-meta">October 2025 · Statistical Learning</p>
+</header>
+
+<section>
+  <p>
+    I’ve always enjoyed working on simple problems where the mathematics can be fully understood and traced step by step.  
+    This project is one of those cases — a careful study of <strong>Ordinary Least Squares (OLS)</strong> applied to the  
+    <strong>California Housing dataset</strong>.  
+    It’s an opportunity to revisit the basic assumptions that make linear regression meaningful:  
+    <strong>linearity</strong>, <strong>constant variance of errors</strong>, <strong>normality of residuals</strong>,  
+    and <strong>absence of strong multicollinearity</strong>.  
+    By exploring these ideas through <strong>feature transformations</strong>,  
+    <strong>best subset selection with cross-validation</strong>, and detailed <strong>residual diagnostics</strong>,  
+    the aim is to show how even a classical model, when properly examined, still offers deep insights.  
+    Understanding these foundations is not a nostalgic exercise — it’s the groundwork that supports  
+    everything we build with more advanced and modern methods.
+  </p>
+</section>
+
+
+      <section>
+        <h2>1. The Dataset</h2>
+        <p>
+          The California Housing dataset is a small classic — 20,640 observations from the 1990 U.S. Census, describing districts in California.  
+          Each record includes features like median income, housing age, average rooms, and the median house value (our target).  
+          It’s the kind of dataset every data scientist has seen at least once — ideal for exploring assumptions, transformations, and model diagnostics.
+        </p>
+        <p>
+          During exploration, I noticed something interesting: many house values are capped at <strong>5.0</strong> (representing \$500,000).  
+          This top-coding introduces a visible flat line in scatterplots — a classic case of truncated data.  
+          Removing these capped points reveals a much cleaner, more continuous relationship between <code>MedInc</code> and <code>MedHouseVal</code>.  
+          After trimming, roughly <em>3.9%</em> of the data was removed, but the signal became much clearer.
+        </p>
+        <figure>
+          <img src="../images/statistical_learning/ols/california_scatter_trimmed.png" alt="Effect of removing capped values" />
+          <figcaption>Before and after removing capped values in the target variable.</figcaption>
+        </figure>
+      </section>
+
+<section>
+  <h2>2. Target Transformations</h2>
+  <p>
+    Let’s start with the foundation. The Ordinary Least Squares (OLS) model assumes a linear link
+    between predictors and the target:
+  </p>
+  <div style="text-align:center;">
+    $$ Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_n X_n + \varepsilon $$
+  </div>
+  <p>
+    Here, \( \varepsilon \) is the random error term — what’s left unexplained after the model fits.
+    The coefficients \( \beta \) are found by minimizing the <strong>Residual Sum of Squares (RSS)</strong>:
+    the squared distance between predictions and the actual observations.
+  </p>
+  <p>
+    This setup hides two quiet but critical assumptions.
+    First, each predictor should have a roughly linear relationship with the target.
+    If the residuals show curvature, the model isn’t seeing the data in a straight line —
+    a signal that a transformation (like a logarithm or square root) might help.
+  </p>
+  <p>
+    Second, the errors are assumed to have constant variance — <strong>homoscedasticity</strong>.
+    When residuals widen or narrow across fitted values (<strong>heteroscedasticity</strong>),
+    the model’s uncertainty becomes misleading. Transforming the response can help,
+    especially for right-skewed targets where concave transforms (e.g., log) stabilize variance.
+  </p>
+  <p>
+    In this dataset, transforming <code>MedHouseVal</code> with a logarithm
+    makes its distribution more symmetric and aligns it better with OLS assumptions.
+    It’s a small step that gives the model a cleaner view of the underlying structure.
+  </p>
+  <figure>
+    <img src="../images/statistical_learning/ols/california_target_transformations.png" alt="Target transformations comparison" />
+    <figcaption>The log transformation makes the target distribution closer to normality.</figcaption>
+  </figure>
+</section>
+
+
+<section>
+  <h2>3. Dealing with Skewed Predictors</h2>
+  <p>
+    Many predictors — <code>MedInc</code>, <code>AveRooms</code>, <code>Population</code>, <code>AveOccup</code> —  
+    show strong right skew. To obtain more uniform distributions and help reveal a potential linear relationship  
+    with the log-transformed house value, <code>log</code> and <code>log1p</code> transformations were applied.
+  </p>
+</section>
+
+
+<section>
+  <h2>4. Collinearity and Multicollinearity</h2>
+  <p>
+    Collinearity appears when two predictors tell a similar story.  
+    The model then struggles to isolate their individual contributions to the target.  
+    The easiest way to detect this is by inspecting the correlation matrix.
+  </p>
+  <figure>
+    <img src="../images/statistical_learning/ols/california_corr_matrix.png" alt="Correlation matrix of predictor variables" />
+    <figcaption>Correlation matrix highlighting relationships among predictors.</figcaption>
+  </figure>
+  <p>
+    In this dataset, <code>MedHouseVal</code> is strongly correlated with <code>MedInc</code> —  
+    richer districts, higher house prices.  
+    <code>MedInc</code> also links with <code>AveRooms</code>,  
+    and <code>AveBedrms</code> is naturally tied to <code>AveRooms</code>.  
+    The high correlation between <code>Latitude</code> and <code>Longitude</code> is simply geography at work:  
+    California stretches along a narrow north–south coastline, so one coordinate nearly determines the other.
+  </p>
+  <p>
+    But pairwise correlation isn’t the whole story.  
+    Several predictors can overlap collectively even if no single pair stands out —  
+    that’s <strong>multicollinearity</strong>.  
+    To quantify it, I computed the <strong>Variance Inflation Factor (VIF)</strong> for each coefficient \( \beta_j \).  
+    It measures how much the variance of \( \beta_j \) is inflated by correlations with the other predictors:
+  </p>
+  <p style="text-align: center;">
+    $$ \text{VIF}_j = \frac{1}{1 - R^2_{j \mid X_{-j}}} $$
+  </p>
+  <p>
+    Here, \( R^2_{j \mid X_{-j}} \) is the coefficient of determination  
+    from regressing predictor \( X_j \) on all the remaining predictors \( X_{-j} \).  
+    If \( X_j \) can be predicted almost perfectly from the others  
+    (that is, \( R^2_{j \mid X_{-j}} \to 1 \)),  
+    the VIF grows without bound, signaling severe redundancy.
+  </p>
+  <pre><code>
+VIF for Predictor Features:
+Feature       VIF
+Latitude      9.93
+Longitude     9.39
+AveRooms      3.41
+MedInc        2.57
+AveBedrms     2.16
+HouseAge      1.26
+Population    1.20
+AveOccup      1.09
+  </code></pre>
+  <p>
+    <code>Latitude</code> and <code>Longitude</code> show the highest VIFs,  
+    consistent with their near-linear relationship.  
+    All other features remain well below the usual concern threshold of 10,  
+    so while some spatial collinearity exists, it doesn’t pose a real problem for the regression.
+  </p>
+</section>
+
+
+
+<section>
+  <h2>5. Fitting the OLS and Searching for the Best Model</h2>
+  <p>
+    After log-transforming both the predictors and the target, it’s time to fit our 
+    ordinary least squares model and ask the key question:  
+    <em>which combination of predictors gives the lowest prediction error on unseen data?</em>  
+    That’s the real goal of model selection — not just finding coefficients, but understanding 
+    which variables actually drive predictive power.
+  </p>
+
+  <p>
+    There are two main strategies for estimating a model’s performance on new data.  
+    The first is indirect: we measure the training error and adjust it using criteria such as 
+    <strong>AIC</strong>, <strong>BIC</strong>, or <strong>Mallows’ Cp</strong>.  
+    The second — and the one used here — is direct: <strong>k-fold cross-validation</strong>.  
+    The dataset is divided into <em>k</em> folds; each fold is used once as validation while the model is trained on the remaining folds.  
+    Averaging the resulting errors gives a robust estimate of how well the model generalizes.
+  </p>
+
+  <p>
+    Since the dataset includes only eight predictors, I can explore every possible combination using 
+    <strong>exhaustive best subset selection</strong>.  
+    For each model size <em>k = 1, 2, …, 8</em>, all <em>p choose k</em> models are fitted and evaluated through cross-validation.  
+    This gives a full view of how model complexity affects predictive performance — no heuristics, no shortcuts, just complete exploration.
+  </p>
+
+  <figure>
+    <img src="../images/statistical_learning/ols/best_subset_selection.png" alt="Best subset selection results" />
+    <figcaption>
+      <strong>Best subset selection results.</strong>  
+      The first panel shows the cross-validation RMSE with ±1 standard error shading.  
+      The dashed gray line marks the model with the lowest CV error, while the red line highlights the 
+      simpler model selected by the <em>one-standard-error rule</em>.  
+      The middle panel reports the validation RMSE for the best subset at each size — the error drops sharply at first, 
+      then levels off after six predictors.  
+      The final panel combines both curves, confirming that beyond six predictors, improvements are negligible.  
+      The six-variable model therefore strikes the best balance between simplicity and accuracy.
+    </figcaption>
+  </figure>
+
+  <p>
+    The exhaustive search produced the following results:
+  </p>
+
+  <pre><code>
+=== Exhaustive Best Subset Selection (8 predictors total) ===
+
+Evaluating all 8 subsets of size 1...
+Evaluating all 28 subsets of size 2...
+Evaluating all 56 subsets of size 3...
+Evaluating all 70 subsets of size 4...
+Evaluating all 56 subsets of size 5...
+Evaluating all 28 subsets of size 6...
+Evaluating all 8 subsets of size 7...
+Evaluating all 1 subsets of size 8...
+
+Lowest CV RMSE: 0.3194 with 8 predictors
+One-SE rule threshold: 0.3234 → simplest model uses 6 predictors
+
+Selected predictors: MedInc, AveRooms, AveBedrms, AveOccup, Latitude, Longitude
+Left out: HouseAge, Population
+
+R² (train): 0.638  
+R² (test):  0.632  
+RMSE (test): 0.321  
+MAE (test):  0.243
+  </code></pre>
+
+  <p>
+    The full eight-variable model achieved the lowest cross-validation error (≈ 0.319).  
+    However, according to the <strong>one-standard-error rule</strong>, the simplest model whose error is 
+    within one standard error of the minimum is preferred.  
+    That model includes six predictors and performs almost identically to the full one.  
+    The two excluded variables — <code>HouseAge</code> and <code>Population</code> — add no meaningful improvement to predictive accuracy.  
+    The final model, therefore, uses:
+    <em>MedInc, AveRooms, AveBedrms, AveOccup, Latitude,</em> and <em>Longitude</em>, 
+    achieving a test <strong>R²</strong> of 0.632 and an <strong>RMSE</strong> of 0.321.
+  </p>
+
+<figure>
+  <img src="../images/statistical_learning/ols/residual_diagnostic.png" alt="Residual diagnostics for OLS model" />
+  <figcaption>
+    <strong>Residual diagnostics for the selected OLS model (log-transformed target).</strong>  
+    The left panel shows residuals versus fitted log-values, used to test the assumption of 
+    <strong>homoscedasticity</strong> — constant error variance across fitted values.  
+    The residuals are mostly evenly dispersed, meaning that the variance is approximately constant, 
+    with no strong funnel pattern.  
+    The LOWESS curve bends slightly upward at the left and downward near the middle, indicating 
+    a mild nonlinear trend and a small bias for low-valued houses: the model tends to 
+    <em>underpredict</em> the cheapest observations.  
+    This pattern is typical after a log transformation, since very small prices are compressed more heavily, 
+    and their variability becomes harder to model linearly.  
+    The right panel displays the <strong>Q–Q plot</strong>, which checks whether residuals follow a normal distribution.  
+    The points adhere closely to the 45° line through the center but deviate slightly in both tails, 
+    showing that the residuals have heavier extremes than a perfect Gaussian.  
+    Overall, the log transformation stabilizes variance and produces roughly normal, centered residuals — 
+    well within acceptable limits for OLS inference.
+  </figcaption>
+</figure>
+
+
+  <p>
+    These two plots target distinct OLS assumptions.  
+    The <em>residuals–fitted</em> plot checks <strong>homoscedasticity</strong> — constant error variance — 
+    which ensures efficient and correctly scaled standard errors.  
+    The <em>Q–Q plot</em> checks <strong>normality</strong> of residuals, important mainly for inference.  
+    Here, both assumptions hold reasonably well: the residual variance is stable, 
+    and residuals are nearly normal.  
+    The slight curvature in the left tail simply reflects that the model is less accurate for the smallest 
+    fitted log-values, not a major violation of OLS assumptions.
+  </p>
+</section>
+ 
+
+<section>
+  <h3>6. What if we didn’t log-transform anything?</h3>
+  <p>
+    Ok Vito, all very nice and clear and simple — but what if we <em>didn’t</em> log-transform the features and the target at all?  
+    Fair question. That’s exactly why I reran the entire analysis on the raw dataset, without touching the original distributions of any variable.  
+    Same exhaustive best subset selection, same cross-validation — just no transformation. Let’s see what happens when we ask OLS to deal directly with the messy, skewed world of housing prices.
+  </p>
+
+  <pre><code>
+=== Exhaustive Best Subset Selection (8 predictors total, RAW dataset) ===
+Lowest CV RMSE: 0.6352 with 7 predictors
+One-SE rule threshold: 0.6421 → simplest model uses 4 predictors
+
+Final (1-SE) model: MedInc, HouseAge, Latitude, Longitude
+R² (train): 0.563 | R² (test): 0.552 | RMSE (test): 0.652 | MAE (test): 0.489
+  </code></pre>
+
+  <p>
+    The results speak for themselves. The model explains about <strong>55% of the variance</strong> in the test set, compared to 
+    <strong>63%</strong> for the log-transformed version, and the test RMSE doubles from roughly <strong>0.32</strong> to <strong>0.65</strong>.  
+    The cross-validation curves tell the same story — higher errors overall and a smaller gap between simple and complex models, meaning that OLS struggles to find a stable pattern when working with raw, skewed data.
+  </p>
+
+  <figure>
+    <img src="../images/statistical_learning/ols/best_subset_selection_raw.png" alt="Best subset selection results (RAW)" />
+    <figcaption>
+      <strong>Best subset selection on the raw data.</strong>  
+      The CV RMSE curve sits higher across all model sizes.  
+      The dashed gray line marks the lowest CV error (7 predictors), while the red line shows the simpler model chosen by the one-standard-error rule (4 predictors).  
+      Notice how the curve flattens quickly — beyond four variables, there’s barely any improvement, meaning added complexity buys nothing.  
+      Compared to the log-transformed version, the overall error floor is much higher, showing that the variance of residuals is simply harder to control.
+    </figcaption>
+  </figure>
+
+<figure>
+  <img src="../images/statistical_learning/ols/residual_diagnostic_raw.png" alt="Residual diagnostics (RAW)" />
+  <figcaption>
+    <strong>Residual diagnostics for the raw OLS model.</strong>  
+    Compared to the log-transformed version, this model shows clearer signs of 
+    <strong>heteroscedasticity</strong>: the residual variance increases with fitted values, 
+    and the LOWESS curve bends more sharply, revealing curvature that suggests 
+    the linear relationship is weaker on the raw scale.  
+    The Q–Q plot also deviates more strongly from the 45° line, especially in the tails, 
+    indicating heavier and more asymmetric residuals.  
+    These patterns confirm that the log transformation helped stabilize variance 
+    and produce residuals closer to the OLS assumptions.
+  </figcaption>
+</figure>
+
+
+
+</section>
+
+<section>
+  <h2>7. Conclusion</h2>
+  <p>
+    The goal of this analysis was to revisit the core principles behind 
+    <strong>Ordinary Least Squares</strong> and to observe how its assumptions behave on real-world data.  
+    Using the <em>California Housing</em> dataset, we revisited what makes OLS work —  
+    <strong>linearity</strong> between predictors and target,  
+    <strong>constant variance</strong> of the errors,  
+    <strong>approximate normality</strong> of residuals,  
+    and the absence of strong <strong>multicollinearity</strong>,  
+    which we verified using the <strong>Variance Inflation Factor (VIF)</strong>.  
+    To select the most effective model, we employed an exhaustive 
+    <strong>best subset selection algorithm</strong> with <strong>cross-validation</strong>,  
+    testing every possible combination of predictors and applying the <em>one-standard-error rule</em>  
+    to favor the simplest model with equivalent predictive power.  
+    The resulting six-variable model, built on log-transformed features and target,  
+    satisfied OLS assumptions far more closely and delivered stronger, more stable performance.
+  </p>
+  <p>
+    Personally, I’ve always liked linear models because they force me to dig into the mechanics —  
+    to check assumptions, read diagnostics, and confront the mathematics instead of hiding behind abstraction.  
+    In a world where we often just feed data to neural networks and hope for the best,  
+    OLS remains a reminder that good modeling starts with understanding the structure beneath the numbers.
+  </p>
+  <p>
+    In the next article, we’ll keep building within the linear framework —  
+    extending it with <strong>polynomial features</strong> to capture curvature  
+    and exploring <strong>Ridge</strong> and <strong>Lasso regression</strong>  
+    to manage collinearity and improve generalization.  
+    Simplicity, when done right, still has a lot to teach.
+  </p>
+</section>
+
+
+
+      <footer>
+        <p>Tags: <a href="../categories/statistical_learning.html">Statistical Learning</a>, OLS, Regression, Feature Engineering</p>
+      </footer>
+    </article>
+  </main>
+
+  <footer id="siteFooter">
+    <p>&copy; 2025 Vito Pagone — Built with curiosity and Python.</p>
+  </footer>
+
+</body>
+</html>
