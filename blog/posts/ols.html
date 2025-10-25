@@ -201,6 +201,7 @@ AveOccup      1.09
 
 
 
+
 <section>
   <h2>5. Fitting the OLS and Searching for the Best Model</h2>
   <p>
@@ -284,34 +285,23 @@ MAE (test):  0.243
   <img src="../images/statistical_learning/ols/residual_diagnostic.png" alt="Residual diagnostics for OLS model" />
   <figcaption>
     <strong>Residual diagnostics for the selected OLS model (log-transformed target).</strong>  
-    The left panel shows residuals versus fitted log-values, used to test the assumption of 
-    <strong>homoscedasticity</strong> — constant error variance across fitted values.  
-    The residuals are mostly evenly dispersed, meaning that the variance is approximately constant, 
-    with no strong funnel pattern.  
-    The LOWESS curve bends slightly upward at the left and downward near the middle, indicating 
-    a mild nonlinear trend and a small bias for low-valued houses: the model tends to 
-    <em>underpredict</em> the cheapest observations.  
-    This pattern is typical after a log transformation, since very small prices are compressed more heavily, 
-    and their variability becomes harder to model linearly.  
-    The right panel displays the <strong>Q–Q plot</strong>, which checks whether residuals follow a normal distribution.  
-    The points adhere closely to the 45° line through the center but deviate slightly in both tails, 
-    showing that the residuals have heavier extremes than a perfect Gaussian.  
-    Overall, the log transformation stabilizes variance and produces roughly normal, centered residuals — 
-    well within acceptable limits for OLS inference.
+    The residuals are broadly symmetric and well-dispersed, with no pronounced funnel shape — 
+    indicating that the error variance is roughly constant across fitted log-values.  
+    The LOWESS curve shows a mild curvature at the lower end, where the model tends to 
+    <em>underpredict</em> cheaper houses, a common side effect of the log transformation compressing 
+    smaller values more strongly.  
+    In the Q–Q plot, the central points adhere closely to the normal line, confirming that most residuals 
+    follow a near-Gaussian pattern.  
+    However, the tails diverge sharply — especially the right tail — revealing that a few extreme observations 
+    are much larger (in absolute value) than expected under a normal distribution.  
+    This kind of tail behavior suggests the presence of <strong>heavy-tailed residuals</strong>,  
+    meaning rare but impactful prediction errors for very high- or very low-priced houses.  
+    Despite that, the distribution remains centered and well-behaved for inference,  
+    and the overall variance stabilization achieved by the log transform is evident.
   </figcaption>
 </figure>
 
 
-  <p>
-    These two plots target distinct OLS assumptions.  
-    The <em>residuals–fitted</em> plot checks <strong>homoscedasticity</strong> — constant error variance — 
-    which ensures efficient and correctly scaled standard errors.  
-    The <em>Q–Q plot</em> checks <strong>normality</strong> of residuals, important mainly for inference.  
-    Here, both assumptions hold reasonably well: the residual variance is stable, 
-    and residuals are nearly normal.  
-    The slight curvature in the left tail simply reflects that the model is less accurate for the smallest 
-    fitted log-values, not a major violation of OLS assumptions.
-  </p>
 </section>
  
 
