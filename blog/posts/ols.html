@@ -81,39 +81,56 @@
 <section>
   <h2>2. Target Transformations</h2>
   <p>
-    Let’s start with the foundation. The Ordinary Least Squares (OLS) model assumes a linear link
-    between predictors and the target:
+    The Ordinary Least Squares (OLS) model assumes a <strong>linear relationship</strong> between predictors and the target:
   </p>
   <div style="text-align:center;">
     $$ Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_n X_n + \varepsilon $$
   </div>
   <p>
-    Here, \( \varepsilon \) is the random error term — what’s left unexplained after the model fits.
-    The coefficients \( \beta \) are found by minimizing the <strong>Residual Sum of Squares (RSS)</strong>:
-    the squared distance between predictions and the actual observations.
+    Here, \( \varepsilon \) represents the random error term — the portion of the target not explained by the predictors.  
+    OLS estimates the coefficients \( \beta \) by minimizing the <strong>Residual Sum of Squares (RSS)</strong>,
+    i.e., the squared difference between observed and predicted values.
   </p>
   <p>
-    This setup hides two quiet but critical assumptions.
-    First, each predictor should have a roughly linear relationship with the target.
-    If the residuals show curvature, the model isn’t seeing the data in a straight line —
-    a signal that a transformation (like a logarithm or square root) might help.
+    For OLS to produce statistically reliable results, the residuals must satisfy two fundamental assumptions.  
+    First, they should have <strong>constant variance</strong> across all fitted values — this property is known as 
+    <strong>homoscedasticity</strong>. When it’s violated (<strong>heteroscedasticity</strong>), 
+    the estimated coefficients remain <strong>unbiased</strong> — meaning that, on average, 
+    they still point to the true underlying relationship — but their <em>standard errors</em> become incorrect.  
+    This distorts confidence intervals and hypothesis tests, as the model misjudges its own uncertainty.
   </p>
   <p>
-    Second, the errors are assumed to have constant variance — <strong>homoscedasticity</strong>.
-    When residuals widen or narrow across fitted values (<strong>heteroscedasticity</strong>),
-    the model’s uncertainty becomes misleading. Transforming the response can help,
-    especially for right-skewed targets where concave transforms (e.g., log) stabilize variance.
+    The second key assumption is that the residuals are <strong>approximately normally distributed</strong>.  
+    Normality is not necessary for unbiased estimates — OLS coefficients still center around the true values —  
+    but it <em>is</em> crucial for valid statistical inference.  
+    Non-normal residuals (e.g., skewed or heavy-tailed) break the theoretical link 
+    that allows us to use <em>t</em>- and <em>F</em>-tests for inference, 
+    leading to inaccurate p-values and confidence intervals.
   </p>
   <p>
-    In this dataset, transforming <code>MedHouseVal</code> with a logarithm
-    makes its distribution more symmetric and aligns it better with OLS assumptions.
-    It’s a small step that gives the model a cleaner view of the underlying structure.
+    In this project, both assumptions are explicitly checked:  
+    the <strong>residuals vs. fitted values plot</strong> tests whether the errors have constant variance,  
+    and the <strong>Q–Q plot</strong> assesses whether the residuals are normally distributed.  
+    Deviations in either diagnostic show where the classical linear model starts to lose validity 
+    — and where transformations can help.
+  </p>
+  <p>
+    That’s exactly why both the predictors and the target are transformed into logarithmic scale:  
+    this <strong>log–log specification</strong> is an effort to satisfy OLS’s old but fundamental assumptions — 
+    linearity, constant error variance, and approximate normality of residuals.  
+    In many real-world datasets, particularly those involving monetary or count variables, 
+    the logarithm compresses extreme values, stabilizes variance, and often makes relationships more linear.
   </p>
   <figure>
     <img src="../images/statistical_learning/ols/california_target_transformations.png" alt="Target transformations comparison" />
-    <figcaption>The log transformation makes the target distribution closer to normality.</figcaption>
+    <figcaption>
+      The log transformation makes the target distribution more symmetric and closer to normality,
+      improving the validity of OLS assumptions.
+    </figcaption>
   </figure>
 </section>
+
+
 
 
 <section>
