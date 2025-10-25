@@ -1,6 +1,6 @@
 [
   {
-    "title": "OLS: The Geometry of Prediction",
+    "title": "OLS: Where Assumptions meet Reality",
     "category": "Statistical Learning",
     "description": "Ordinary Least Squares as the simplest form of learning — a projection that finds structure in data.",
     "image": "/blog/images/statistical_learning/ols/ols_cover.png",
