@@ -7,7 +7,6 @@
   <meta name="keywords" content="Blog, Vito Pagone, AI, Creativity, Technology, Life, Curiosity, Reflections" />
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
-  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
@@ -19,99 +18,43 @@
   <title>Blog – Vito Antonio Pagone</title>
 
   <style>
-
-    /* Highlight the CV link in the nav */
-nav a[href*="cv"] {
-  font-weight: 600;
-  border-bottom: 2px solid currentColor;
-}
-
-    .blog-header {
-      text-align: center;
-      margin-top: 60px;
+    .blog-list {
+      margin-top: 3rem;
     }
 
-    .blog-header h1 {
-      font-size: 2.4em;
-      margin-bottom: 0.3em;
+    .blog-item {
+      margin-bottom: 2.2rem;
     }
 
-    .blog-header p {
-      color: #555;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
+    .blog-item-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
     }
 
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin: 3em auto;
-      max-width: 1000px;
-    }
-
-    .blog-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .blog-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-    }
-
-    .blog-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .blog-content {
-      padding: 1.2em;
-    }
-
-    .blog-content h3 {
-      margin: 0 0 0.4em;
-      font-size: 1.2em;
-    }
-
-    .blog-content h3 a {
-      color: #000;
+    .blog-item-title a {
+      color: var(--text);
       text-decoration: none;
     }
 
-    .blog-content h3 a:hover {
+    .blog-item-title a:hover {
       text-decoration: underline;
     }
 
-    .blog-content p {
+    .blog-item-desc {
       color: #444;
+      margin-bottom: 0.4rem;
       line-height: 1.5;
-      margin-bottom: 0.5em;
     }
 
-    .blog-meta {
-      font-size: 0.9em;
-      color: #777;
-    }
-
-    .blog-meta a {
-      color: #777;
-      text-decoration: underline;
-    }
-
-    .blog-meta a:hover {
-      color: #000;
+    .blog-item-meta {
+      font-size: 0.9rem;
+      color: var(--accent);
     }
   </style>
 </head>
 
 <body>
-  <header>
+<header>
 <nav>
   <a href="../index.html#about">About</a>
   <a href="../index.html#experience">Experience</a>
@@ -122,76 +65,58 @@ nav a[href*="cv"] {
   <a href="../index.html#contact">Contact</a>
 </nav>
 
+  <h1>Vito Antonio Pagone</h1>
+  <p>Data Scientist & Machine Learning Engineer based in Zürich, Switzerland</p>
 
-    <h1>Vito Antonio Pagone</h1>
-    <p>Data Scientist & Machine Learning Engineer based in Zürich, Switzerland</p>
+  <div class="header-icons">
+    <a href="mailto:vitopagone@outlook.com" title="Email">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <rect width="20" height="16" x="2" y="4" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </a>
 
-    <div class="header-icons">
-      <a href="mailto:vitopagone@outlook.com" title="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <rect width="20" height="16" x="2" y="4" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
-          <polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="2"/>
-        </svg>
-      </a>
+    <a href="https://linkedin.com/in/vitoantoniopagone" target="_blank" title="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" fill="none" />
+        <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" fill="none" />
+      </svg>
+    </a>
 
-      <a href="https://linkedin.com/in/vitoantoniopagone" target="_blank" title="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path fill="none" stroke="currentColor" stroke-width="2" d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
-          <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" fill="none" />
-          <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" fill="none" />
-        </svg>
-      </a>
-
-      <a href="https://github.com/vitoantoniopagone" target="_blank" title="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path fill="none" stroke="currentColor" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 3v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.5c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 19v3" />
-        </svg>
-      </a>
-    </div>
-  </header>
-
-  <section class="blog-header">
-    <h1>Blog</h1>
-    <p>
-      Notes, reflections, and half-baked ideas — things I find interesting, strange, or worth remembering.  
-      No strict topics, just curiosity at work.
-    </p>
-  </section>
-
-<section class="blog-grid" id="blogGrid"></section>
+    <a href="https://github.com/vitoantoniopagone" target="_blank" title="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 3v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.5c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 19v3" />
+      </svg>
+    </a>
+  </div>
+</header>
 
 
-  <footer>
-    <p>© <span id="year"></span> Vito Antonio Pagone</p>
-  </footer>
+<section class="blog-list" id="blogList"></section>
+
+<footer>
+  <p>© <span id="year"></span> Vito Antonio Pagone</p>
+</footer>
 
 <script>
-  document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
-  fetch('posts.json')
-    .then(response => {
-      if (!response.ok) throw new Error('Failed to load posts.json');
-      return response.json();
-    })
-    .then(posts => {
-      const grid = document.getElementById('blogGrid');
-      posts.forEach(post => {
-        const card = document.createElement('article');
-        card.className = 'blog-card';
-        card.innerHTML = `
-          <img src="${post.image}" alt="${post.title}">
-          <div class="blog-content">
-            <h3><a href="${post.url}">${post.title}</a></h3>
-            <p>${post.description}</p>
-            <p class="blog-meta">
-              ${post.date} · ${post.category}
-              ${post.code ? ` · <a href="${post.code}" target="_blank">View Code</a>` : ""}
-            </p>
-          </div>`;
-        grid.appendChild(card);
-      });
-    })
-    .catch(error => console.error('Error loading blog posts:', error));
+fetch('posts.json')
+  .then(r => r.json())
+  .then(posts => {
+    const list = document.getElementById('blogList');
+    posts.forEach(post => {
+      const item = document.createElement('div');
+      item.className = 'blog-item';
+      item.innerHTML = `
+        <h3 class="blog-item-title"><a href="${post.url}">${post.title}</a></h3>
+        <p class="blog-item-desc">${post.description}</p>
+        <p class="blog-item-meta">${post.date} · ${post.category}</p>
+      `;
+      list.appendChild(item);
+    });
+  });
 </script>
 
 </body>
