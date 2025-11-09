@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Do LLMs know when a problem is hard" />
+  <title>Do LLMs Know When a Problem Is Hard</title>
+
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/tex.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon_io/favicon.ico" type="image/x-icon">
+  <meta name="theme-color" content="#ffffff">
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+  <header id="topNav">
+    <nav class="menu">
+      <a href="../../index.html" class="active">Home</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <article class="post">
+      <header>
+        <h1>Do LLMs Know When a Problem Is Hard</h1>
+        <p class="post-meta">9 February 2025</p>
+      </header>
+
+<p>
+  I found a discussion on Hacker News (<a href="https://news.ycombinator.com/item?id=45838564" target="_blank">link</a>) about a paper titled <strong><em>LLMs Encode How Difficult Problems Are</em></strong> (<a href="https://arxiv.org/pdf/2510.18147" target="_blank">paper</a>) by William Lugoloobi and Chris Russell and i found it really interesting. We know that language models can solve some math and coding problems surprisingly well. We also know they can fail on problems that look easy. So the natural question is: do these models have any sense of which problems are easy and which are hard?
+</p>
+
+<p>
+  To explore this, the authors use <strong>linear probes</strong>. A linear probe is a very simple model that tries to read information from the hidden layers of a larger model. Here, the probe tries to guess how easy a problem is based on the larger model’s internal representation after reading the problem. 
+</p>
+
+<p>
+  The authors tested this on <strong>60 language models</strong>. Some were general models like DeepSeek, Qwen, and LLaMA. Others were trained specifically for math, like Qwen-Math and FineMath.
+</p>
+
+<p>
+  The difficulty labels came from the <strong><em>Easy2Hard Bench</em></strong>. In <strong>E2H-AMC</strong>, difficulty is based on how many humans solved each math contest problem. In <strong>E2H-GSM8K</strong>, difficulty is based on how often language models solved each problem. So one benchmark reflects human difficulty, the other reflects model difficulty.
+</p>
+
+<p>
+  The result is surprisingly strong, especially on human-labeled difficulty. For example, on the <strong>E2H-AMC</strong> math contest set, the best probe reaches about <strong>ρ ≈ 0.88</strong> when applied to <strong>DeepSeek-Llama-70B</strong>. Here \( \rho \) is the Spearman rank correlation between the probe’s predicted ordering of problem difficulty and the ordering derived from human success rates. In other words, this model’s internal activations line up very closely with what <em>people</em> tend to find hard or easy.
+</p>
+
+
+<p>
+  However, this does not hold when difficulty is based on how often <strong>models</strong> solve the problems. In that case, the correlation is much weaker. So the models seem to reflect human difficulty, but they do not seem to reflect their own reliability. They do not appear to “know” when they themselves are likely to succeed or fail.
+</p>
+
+<p>
+  The authors then look at how this pattern changes as model size increases. Larger models tend to represent human difficulty more clearly than smaller ones. This relationship can be expressed mathematically as:
+</p>
+
+<p style="text-align:center;">
+  \( 1 - \rho = c \cdot n^{-\alpha} \)
+</p>
+
+<p>
+  When the authors examine how this behavior changes with model size, they find a clear difference between human-labeled and model-labeled difficulty. The correlation follows a power-law scaling, and the rate of improvement is captured by the exponent \( \alpha \). For coding tasks (E2H-Codeforces), the scaling is strongest (\( \alpha \approx 0.066 \)), meaning larger models form clearer internal representations of which coding problems are easy. For math contest problems (E2H-AMC), the scaling is moderate (\( \alpha \approx 0.045 \)), rising from about 0.82 to 0.89 as models grow. But for school-style math where difficulty is defined by how often models solve the problem (E2H-GSM8K), the scaling is weak (\( \alpha \approx 0.020 \)) and noisy. This suggests that models consistently learn what <em>humans</em> find easy, but do not consistently learn what <em>other models</em> struggle with.
+</p>
+
+
+<p>
+  The authors also examine where this information appears in the prompt. For coding tasks, the internal signal appears near the end of the prompt, after reading the full context. For math tasks, it appears earlier, as the structure of the problem becomes clear. This suggests the model forms its sense of ease gradually, depending on the nature of the task.
+</p>
+
+<p>
+  The most interesting part comes when the authors use the probe in reverse. Because the probe is linear, they can slightly adjust the model’s internal activations in the same direction the probe uses to recognize easy problems. When they shift the representation in this direction, the model begins to treat the problem as easier. Strangely, this leads to <strong>better reasoning and more accurate answers</strong>. The responses become shorter, clearer, and less confused. Shifting the internal state toward the “hard” direction makes the model perform worse.
+</p>
+
+<p>
+  This internal cue is not just something hidden inside the model, we can actually make use of it. If we gently push the model into the state it uses for “this looks easy,” it tends to think more clearly and produce better answers.
+</p>
+
+
+<p>
+  Finally, during <strong>GRPO training</strong> for math reasoning, the internal representation tied to human difficulty becomes stronger, while the part tied to model difficulty becomes weaker. So training further aligns models with human intuition, not with model-based performance.
+</p>
+
+<h3>Conclusion</h3>
+
+<p>
+  What stands out to me after reading this paper is that models are not just generating text blindly. Inside their hidden layers, they seem to hold a fairly accurate sense of what <em>humans</em> find easy or hard. 
+</p>
+
+<p>
+  The scaling results make this clearer. When models grow in size, the internal signal that matches human difficulty becomes stronger and more stable. But when difficulty is defined using how often <em>models</em> solve the problems, the pattern becomes noisy and weak. Bigger models are learning our sense of difficulty, not their own.
+</p>
+
+<p>
+  The steering experiment is the part that surprised me most. If you gently push the model toward the internal state it uses when a problem seems “easy,” the model starts reasoning in a calmer and more efficient way. It writes less, uses tools more, and gets more answers right. In other words, helping the model <em>treat</em> the problem as approachable leads to clearer reasoning.
+</p>
+
+
+<p>
+  This opens an interesting direction for future work. I am curious to see if the authors or others will test this on different benchmarks and different domains beyond math and code. If this pattern holds, we might start treating reasoning not just as a matter of scaling models, but as guiding them to use the internal structures they already have.
+</p>
+
+<p>
+  And maybe there is a small philosophical echo here. Sometimes, when we face a difficult problem, we overthink, tense up, and make it harder than it is. But when we relax, treat it as manageable, and take it step by step, the solution often appears. Perhaps models and humans share at least this: sometimes the best thinking starts when we stop telling ourselves the task is hard.
+</p>
+
+<p>Have a nice Sunday.</p>
+
+      <hr>
+
+      <p><strong>Reference</strong><br>
+      Lugoloobi, W., & Russell, C. (2025). <em>LLMs Encode How Difficult Problems Are.</em> arXiv:2510.18147.
+      <a href="https://arxiv.org/pdf/2510.18147" target="_blank">PDF</a></p>
+
+      <footer class="post-tags">
+        <p>AI · reasoning · math · coding</p>
+      </footer>
+
+    </article>
+  </main>
+
+  <footer id="siteFooter">
+    <p>&copy; 2025 Vito Pagone</p>
+  </footer>
+
+
+</body>
+</html>

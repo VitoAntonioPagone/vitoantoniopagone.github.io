@@ -1,11 +1,23 @@
 [
   {
+  "title": "Do LLMs Know When a Problem Is Hard?",
+  "category": "AI Research",
+  "description": "Exploring whether large language models carry an internal sense of which problems people find easy or hard, and what happens when we steer that signal.",
+  "image": "/blog/images/ai/llm_difficulty/cover.png",
+  "date": "9 November 2025",
+  "url": "posts/llm_encode_difficulty.html",
+  "code": ""
+},
+  {
     "title": "OLS: Where Assumptions meet Reality",
     "category": "Statistical Learning",
     "description": "Ordinary Least Squares as the simplest form of learning — a projection that finds structure in data.",
     "image": "/blog/images/statistical_learning/ols/ols_cover.png",
-    "date": "October 2025",
+    "date": "25 October 2025",
     "url": "posts/ols.html",
     "code": "https://github.com/VitoAntonioPagone/statistical_learning/tree/main/OLS/california_housing"
   }
+
+
+
 ]
