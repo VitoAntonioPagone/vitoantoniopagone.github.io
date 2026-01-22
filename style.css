@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
 
 
 :root {
@@ -6,8 +7,8 @@
   --accent: #666;
   --link: #666;
   --subtle: #ddd;
-  --font-body: "Palatino", "Palatino Linotype", "Book Antiqua", serif;
-  --font-mono: "Inconsolata", "Courier New", Courier, monospace;
+  --font-body: "Inconsolata", monospace;
+  --font-mono: "Inconsolata", monospace;
   --transition: 0.2s ease;
 }
 
