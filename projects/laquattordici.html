@@ -42,75 +42,6 @@
 
 
   <style>
-    /* --- Image Container --- */
-    .image-container {
-      position: relative;
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 1.5rem 0;
-    }
-
-    .image-container img {
-      width: 100%;
-      border-radius: 12px;
-      display: block;
-    }
-
-    /* --- Expand Button --- */
-    .expand-btn {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      transition: background 0.2s;
-    }
-
-    .expand-btn:hover {
-      background: rgba(255, 255, 255, 1);
-    }
-
-    .expand-btn svg {
-      width: 18px;
-      height: 18px;
-      fill: #333;
-    }
-
-    /* --- Fullscreen Modal --- */
-    .fullscreen-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      cursor: zoom-out;
-    }
-
-    .fullscreen-modal img {
-      width: 95%;
-      max-height: 95vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-
-    @media (max-width: 600px) {
-      .expand-btn {
-        width: 32px;
-        height: 32px;
-      }
-    }
   </style>
 </head>
 
@@ -120,6 +51,11 @@
       <a href="../index.html#projects">← Back to Projects</a>
     </nav>
     <h1>La Quattordici · Luxury Apartment</h1>
+    <p>
+      <a href="https://laquattordiciluxuryapartment.it" target="_blank" style="color:#0072b1; text-decoration:none; font-weight:bold;">
+        → Visit the Website
+      </a>
+    </p>
 <p><em>Web Design & Development for a beautiful stone house in the heart of Ostuni</em></p>
   </header>
 
@@ -131,7 +67,7 @@
     When Michele decided to share it with the world, I wanted the online experience to reflect that same quiet charm.
   </p>
   <p>
-    The result is <a href="https://laquattordiciluxuryapartment.it/en" target="_blank"><strong>La Quattordici Luxury Apartment</strong></a> —  
+    The result is <a href="https://laquattordiciluxuryapartment.it" target="_blank"><strong>La Quattordici Luxury Apartment</strong></a> —  
     a modern, intuitive website designed to mirror the timeless atmosphere of the home itself.  
     If you ever find yourself wandering through Ostuni, it’s the kind of place that invites you to stay a little longer.
   </p>
@@ -140,28 +76,21 @@
 
   <section class="section">
     <h2>Design & Technology</h2>
-
-    <div class="image-container">
-      <img src="../images/laquattordici/laquattordici.png" alt="La Quattordici Luxury Apartment" id="projectImage">
-      <button class="expand-btn" id="expandBtn" aria-label="Expand image">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M9 3H3v6h2V5h4V3zm12 0h-6v2h4v4h2V3zM3 15v6h6v-2H5v-4H3zm16 0v4h-4v2h6v-6h-2z"/>
-        </svg>
-      </button>
-    </div>
-
     <p>
-      The website was built from scratch with a focus on <strong>clean design</strong> and <strong>mobile-first performance</strong>.  
-      It uses lightweight HTML and CSS for speed and simplicity, ensuring an effortless browsing experience on any device.  
-      The visuals emphasize space, light, and materials — echoing the textures of Ostuni’s architecture and the relaxed elegance of the home.  
+      The website was built from scratch with a focus on <strong>clean design</strong> and <strong>mobile-first performance</strong>.
+      It runs on <strong>Next.js</strong> and <strong>React</strong>, styled with <strong>Tailwind CSS</strong>,
+      and structured with <strong>TypeScript</strong> to keep the codebase reliable and maintainable.
+      The visuals emphasize space, light, and materials — echoing the textures of Ostuni’s architecture and the relaxed elegance of the home.
     </p>
     <p>
-      Every part of this project was crafted to feel authentic, calm, and true to the place it represents —  
+      The backend features include <strong>email handling</strong> and <strong>calendar integration</strong>
+      via <strong>Nodemailer</strong> and <strong>node-ical</strong>, supporting bookings and seasonal updates without overcomplicating the experience.
+      Every part of this project was crafted to feel authentic, calm, and true to the place it represents —
       technology used not to impress, but to invite.
     </p>
 
     <p style="margin-top: 1.5rem;">
-      <a href="https://laquattordiciluxuryapartment.it/en" target="_blank" class="more-details" style="text-decoration:none; color:#0072b1; font-weight:bold;">
+      <a href="https://laquattordiciluxuryapartment.it" target="_blank" class="more-details" style="text-decoration:none; color:#0072b1; font-weight:bold;">
         → Visit the Website
       </a>
     </p>
@@ -171,24 +100,8 @@
     <p>© <span id="year"></span> Vito Antonio Pagone</p>
   </footer>
 
-  <!-- Fullscreen Modal -->
-  <div class="fullscreen-modal" id="fullscreenModal">
-    <img src="../images/laquattordiciluxuryapartment/laquattordici.png" alt="Expanded View">
-  </div>
-
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    const expandBtn = document.getElementById("expandBtn");
-    const modal = document.getElementById("fullscreenModal");
-
-    expandBtn.addEventListener("click", () => {
-      modal.style.display = "flex";
-    });
-
-    modal.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
   </script>
 </body>
 </html>
