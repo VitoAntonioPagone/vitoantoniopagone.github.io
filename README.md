@@ -29,7 +29,8 @@ A graphic snapshot of the tools and areas represented across this site.
 - **La Quattordici**: Modern web design and development. [Details](projects/laquattordici.html)
 
 ## Experience
-- Data Scientist, UBS (Mar 2024 - Present)
+- New role coming soon (from Jun 2026)
+- Data Scientist, UBS (Mar 2024 - May 2026)
 - Machine Learning Intern, IBM Research (Nov 2023 - Jan 2024)
 - Machine Learning Researcher and Python Developer, ETH Zurich (Feb 2023 - Jan 2024)
 - Intern, MAN Energy Solutions (Sep 2022 - Mar 2023)
