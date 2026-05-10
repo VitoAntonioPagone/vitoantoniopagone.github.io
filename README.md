@@ -2,7 +2,7 @@
 
 # Vito Antonio Pagone
 
-Data Scientist and Machine Learning Engineer based in Zurich, Switzerland.
+Software Engineer based in Zurich, Switzerland.
 
 [Website](https://vitoantoniopagone.github.io) · [CV](cv/vito_antonio_pagone_cv.pdf) · [Blog](blog/index.html) · [LinkedIn](https://linkedin.com/in/vitoantoniopagone) · [GitHub](https://github.com/vitoantoniopagone) · [Email](mailto:vitopagone@outlook.com)
 
